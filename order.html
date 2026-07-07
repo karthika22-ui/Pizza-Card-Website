@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pizza Order Page</title>
+  <link rel="stylesheet" href="order.css" />
+</head>
+<body>
+  <div class="container">
+    <h1> 🍴😋🍕Order Your Favorite Pizza</h1>
+
+    <div class="menu">
+      <div class="pizza" data-price="250">
+        <h3>Margherita</h3>
+        <img src="piz1.jpg">
+        <p>₹250</p>
+        <input type="number" min="0" value="0" class="qty" />
+      </div>
+
+      <div class="pizza" data-price="300">
+        <h3>Veggie Supreme</h3>
+        <img src="piz2.jpg">
+        <p>₹300</p>
+        <input type="number" min="0" value="0" class="qty" />
+      </div>
+
+      <div class="pizza" data-price="350">
+        <h3>Paneer Tikka</h3>
+        <img src="piz3.jpg" height="150" width="200">
+        <p>₹350</p>
+        <input type="number" min="0" value="0" class="qty" />
+      </div>
+
+      <div class="pizza" data-price="400">
+        <h3>BBQ chicken</h3>
+        <img src="piz9.jpg">
+        <p>₹400</p>
+        <input type="number" min="0" value="0" class="qty" />
+      </div>
+
+      <div class="pizza" data-price="400">
+        <h3>Hawaiian </h3>
+        <img src="piz8.jpg">
+        <p>₹400</p>
+        <input type="number" min="0" value="0" class="qty" />
+      </div>
+
+      <div class="pizza" data-price="400">
+        <h3>Sicilian</h3>
+        <img src="piz10.jpg" height="150" width="200">
+        <p>₹400</p>
+        <input type="number" min="0" value="0" class="qty" />
+      </div>
+</div>
+
+    <div class="total-section">
+      <p>Total Amount: ₹<span id="total">0</span></p>
+      <button onclick="placeOrder()">Place Order</button>
+      
+    </div>
+  </div>
+
+  <script src="script.js"></script>  
+
+</body>
+</html>

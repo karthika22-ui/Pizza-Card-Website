@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pizza Payment Options</title>
+  <link rel="stylesheet" href="receipt.css">
+  <style>
+    body {
+      font-family: Arial;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f9f9f9;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #qrCode {
+      display: none;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    #successModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="paymentForm">
+    <h2>Select Payment Method</h2>
+
+    <div class="payment-option">
+      <input type="radio" name="payment" value="Online Payment" id="online">
+      <label for="online">Online Payment</label>
+    </div>
+
+    <div class="payment-option">
+      <input type="radio" name="payment" value="Cash on Delivery" id="cod">
+      <label for="cod">Cash on Delivery</label>
+    </div>
+
+    <button type="submit">Confirm Order</button>
+
+    <!-- QR Code Image -->
+    <img id="qrCode" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PizzaPayment-UPI" alt="QR Code">
+
+  </form>
+
+  <!-- Success Modal -->
+  <div id="successModal">
+    Payment Successful! Redirecting...
+  </div>
+
+  <script>
+    document.getElementById("paymentForm").onsubmit = function(event) {
+      event.preventDefault();
+
+      const paymentMethods = document.getElementsByName("payment");
+      let selectedMethod = "";
+
+      for (let i = 0; i < paymentMethods.length; i++) {
+        if (paymentMethods[i].checked) {
+          selectedMethod = paymentMethods[i].value;
+          break;
+        }
+      }
+
+      const qr = document.getElementById("qrCode");
+
+      if (selectedMethod === "Online Payment") {
+        // Show QR for payment
+        qr.style.display = "block";
+      } else if (selectedMethod === "Cash on Delivery") {
+        alert("Cash on Delivery selected. Redirecting to receipt...");
+        window.location.href = "complete.html";
+      } else {
+        alert("Please select a payment method.");
+      }
+    };
+
+    document.getElementById("qrCode").onclick = function () {
+      const modal = document.getElementById("successModal");
+      modal.style.display = "flex";
+
+      setTimeout(() => {
+        window.location.href = "complete.html"; // Go to receipt
+      }, 3000);
+    };
+  </script>
+
+</body>
+</html>
